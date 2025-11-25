@@ -1,0 +1,14 @@
+Версия python
+python -V
+
+Создать venv
+python -m venv venv
+
+Активировать 
+venv\Scripts\activate
+
+может быть такое
+venv/Scripts/activate
+
+Видео с объяснением venv:
+https://www.youtube.com/watch?v=0i4SPuorMEE
