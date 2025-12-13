@@ -74,6 +74,6 @@
 # print(list)
 
 # 15. Создайте вложенный список (матрицу 3х3) и выведите все элементы двойным циклом.
-for i in range(1,4):
-    for j in range(1,4):
-        print(i, j)
+# for i in range(1,4):
+#     for j in range(1,4):
+#         print(i, j)

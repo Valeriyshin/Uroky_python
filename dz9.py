@@ -80,29 +80,25 @@
 # print(new_nums)
 
 # 12.	12. Для списка заказов [id, цена]: найдите сумму, минимальную цену и её id.
-orders = [
-    [301, 5000],
-    [302, 12000],
-    [303, 2000],
-    [304, 10000],
-    [305, 990],
-]
+# orders = [
+#     [301, 5000],
+#     [302, 12000],
+#     [303, 2000],
+#     [304, 10000],
+#     [305, 990],
+# ]
+# total =0
+# for i in orders:
+#     total += i[1]
 
-total =0
-for i in orders:
-    total += i[1]
-
-min_price = orders[4][1]
-min_id = orders[0][0]
-
-for i in orders:
-    order_id = i[0]
-    price = i[1]
-
-if price < min_price:
-    min_price = price
-    min_id = order_id
-
-print(total)
-print(min_price)
-print(min_id)
+# min_price = orders[4][1]
+# min_id = orders[0][0]
+# for i in orders:
+#     order_id = i[0]
+#     price = i[1]
+# if price < min_price:
+#     min_price = price
+#     min_id = order_id
+# print(total)
+# print(min_price)
+# print(min_id)
