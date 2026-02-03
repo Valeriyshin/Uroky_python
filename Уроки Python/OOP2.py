@@ -74,7 +74,7 @@ class Warrior(Character):
         super().__init__(name, 150, 20)
         
     def attack(self, target):
-        print(self.name, "рубит мечом!")
+        print(self.name, "рубит мечом", target.name, "на", self.damage)
         target.take_damage(self.damage)
       
 class Mage(Character):
@@ -89,7 +89,6 @@ class Mage(Character):
         self.mana -=20
         print(self.name, "кастует фаербол")
         target.take_damage(self.damage + 10)
-        
 
 class Paladin(Character):
     def __init__(self, name):
@@ -103,6 +102,23 @@ class Paladin(Character):
         print(self.name, "лечит союзника", target.name)
         target.heal(25)
         
+class Rogue(Character):
+    def __init__(self, name):
+        super().__init__(name, 90, 25)
+        self.energy = 100
+        
+    def attack(self, target):
+        print(self.name, "Атакует", target.name, "на", self.damage)
+        target.take_damage(self.damage)
+        
+    def backstab(self, target):
+        if self.energy < 30:
+            print (self.name, "Недостаточно стамины")
+            return
+        self.energy -=30
+        print(self.name, "Атакует со спины", target.name, "на", self.damage*2)
+        target.take_damage(self.damage*2)
+           
 class Item:
     def __init__(self, name):
         self.name = name
@@ -122,7 +138,6 @@ class Potion(Item):
         print(user.name, "использует", self.name, "на", target.name)
         target.heal(self.heal_amount)
     
-
 class Bomb(Item):
     def __init__(self, name, damage):
         super().__init__(name)
@@ -134,17 +149,15 @@ class Bomb(Item):
             return
         
         print(user.name, "боосает", self.name, "в", target.name)
-        target.take_damage(self.damage)
-        
-        
-
+        target.take_damage(self.damage)  
      
 war = Warrior("Тралл")
 mage = Mage("Джайна")
 pal = Paladin("Артас")
+rog = Rogue("Валира")
 
 pal.add_item(Potion("Малая банка хила", 20))
-pal.add_item(Potion("Бальшая банка зила", 50))
+pal.add_item(Potion("Бальшая банка хила", 50))
 pal.add_item(Bomb("Святая граната", 30))
 
 pal.show_inventory()
@@ -155,21 +168,27 @@ while war.is_alive() and mage.is_alive():
     print("\n--- Ход", turn, "---")
     
     war.attack(mage)
+    mage.attack(war)
+            
+    if turn == 1:
+        pal.heal_ally(mage)
+        rog.backstab(mage)
+    elif turn == 2:
+        pal.use_item(1, target = mage)
+        rog.backstab(war)
+    elif turn == 3:
+        pal.use_item(1, target= mage)
+        
+    else:
+        pal.use_item(1, target=war)
+        
+    war.info()
     mage.info()
     
     if not mage.is_alive():
         break
-    
-    if turn == 1:
-        pal.heal_ally(mage)
-    elif turn == 2:
-        pal.use_item(1, target = war)
-        
-    else:
-        pal.use_item(1, target=mage)
-        
-        war.info()
-        mage.info()
+    if not war.is_alive():
+        break
         
     turn +=1
     if turn>6:
