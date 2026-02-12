@@ -79,3 +79,15 @@ button{
     color: white;
     background-color: darkred;
 }
+
+.basket{
+    width: 900px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: darkred;
+    color: white;
+}
+h2{
+    color: white;
+}
