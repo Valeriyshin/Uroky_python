@@ -1,0 +1,278 @@
+body{
+    width: 1200px;
+    min-height: 100vh;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: rgb(23, 23, 23);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+}
+body a{
+    text-decoration: none;
+    color: white;
+    opacity: 0.9;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 15px;
+
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(6px);
+}
+.left-header{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.logo{
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.logo img{
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+.nav{
+    display: flex;
+    gap: 28px;
+    font-size: 16px;
+    padding: 0;
+}
+.nav a{
+    padding: 8px 10px;
+    border-radius: 10px;
+}
+.right-header{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.right-header button{
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-right: 0;
+
+    background: rgba(255,255,255,0.06);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+}
+.right-header button:last-child{
+    background: white;
+    color: #111;
+    border-color: white;
+}
+.main {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+.sidebar{
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border: 2px solid rgba(255,255,255,0.18);
+    border-radius: 15px;
+    padding: 16px;
+
+    background: rgba(255,255,255,0.03);
+}
+.sidebar h{
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+.sidebar a{
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+}
+.content{
+  width: 82%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: flex-start;
+}
+.card{
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: left;
+}
+.card a{
+    color: white;
+}
+
+.card img{
+  width: 100%;
+  height: 190px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: rgba(255,255,255,0.08);
+}
+
+.card h3{
+  margin: 0;
+  font-size: 16px;
+}
+
+.card p{
+  margin: 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.card button{
+  margin-top: auto;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+.footer{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 20px;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 15px;
+    gap: 200px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.04);
+}
+.footer-logo img{
+    display: flex;
+    justify-content: start;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+.footer-nav{
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav a{
+  opacity: 0.85;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+
+
+
+
+/* ===== PRODUCT PAGE ===== */
+
+.product-page{
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/* Левая часть */
+.product-left{
+  width: 45%;
+}
+
+.product-left img{
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.05);
+}
+
+/* Правая часть */
+.product-right{
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.breadcrumbs{
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.product-right h1{
+  margin: 0;
+  font-size: 28px;
+}
+
+.product-subtitle{
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.product-price{
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Кнопки */
+.product-actions{
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.buy-btn{
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: white;
+  color: #111;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.secondary-btn{
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+}
+
+/* Характеристики */
+.specs{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+
