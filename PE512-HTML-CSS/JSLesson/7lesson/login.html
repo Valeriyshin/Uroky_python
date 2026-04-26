@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="navigation">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+
+        <form id="loginForm">
+            <input type="text" id="loginName" placeholder="Name">
+            <p class="error-text" id="loginNameError"></p>
+
+            <input type="password" id="loginPassword" placeholder="Password">
+            <p class="error-text" id="loginPasswordError"></p>
+
+            <label for="">
+                <input type="checkbox" id="showLoginPassword"> Show Password
+            </label>
+
+            <button type="submit" class="btn">Login</button>
+
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

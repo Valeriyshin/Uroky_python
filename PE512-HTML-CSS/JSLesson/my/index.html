@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стратегия запуска ЖК Manifique | BAZIS-A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#fdfbf7', // Light warm neutral
+                            dark: '#1c1917',  // Stone 900
+                            accent: '#b45309', // Amber 700 / Bronze
+                            muted: '#a8a29e'  // Stone 400
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                        serif: ['Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fdfbf7;
+            color: #1c1917;
+        }
+        /* Required Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+            min-height: 300px;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #b45309;
+            color: #b45309;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone/Cream) with Bronze/Gold accents for an "Ultra-Premium" feel -->
+    
+    <!-- Application Structure Plan: 
+         1. Hero Section: High-level overview of the project and budget.
+         2. Key Metrics Grid: Quick facts to establish context (60 units, price, etc.).
+         3. Interactive Strategy Dashboard: The core tool. Uses a toggle to switch between Scenario 1 (Base) and Scenario 2 (Advanced). Dynamic updates of charts and text based on the selection to facilitate comparison.
+         4. Channel Breakdown: Detailed qualitative text for each channel, changing based on the scenario.
+         5. Methodology Section: Explains the "Why" (LAL, Advantage+, etc.) drawn from the source report context.
+         This structure provides an immediate executive summary followed by deep, interactive exploration of the two requested scenarios. -->
+         
+    <!-- Visualization & Content Choices: 
+         - Goal: Compare Scenarios -> Viz: Dynamic Chart.js Doughnut Chart -> Interaction: Toggle switch -> Justification: Clearly shows budget redistribution when adding new channels. NO SVG used.
+         - Goal: Inform on Funnel -> Viz: Interactive HTML/CSS Progress/Stat Bars -> Interaction: Updates with scenario toggle -> Justification: Shows how CPL and Lead Volume change based on the strategy.
+         - Goal: Detailed Strategy -> Viz: Contextual Text Blocks -> Interaction: Shows/hides based on active scenario -> Justification: Keeps UI clean while providing necessary depth. -->
+         
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Header -->
+        <header class="text-center mb-16 fade-in">
+            <h4 class="text-brand-accent uppercase tracking-[0.2em] text-sm font-semibold mb-3">Digital Marketing Strategy</h4>
+            <h1 class="text-4xl md:text-5xl font-serif text-brand-dark mb-4">Запуск ЖК Manifique</h1>
+            <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                Стратегия лидогенерации и вывода на рынок Ultra-Premium комплекса в Алматы. Период: 12 мая — 12 июня 2026 г.
+            </p>
+        </header>
+
+        <!-- Intro / Key Metrics -->
+        <section class="mb-16 fade-in">
+            <p class="text-sm text-stone-500 mb-4 uppercase tracking-widest text-center">Вводные данные проекта</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 text-center">
+                    <div class="text-3xl mb-2">🏢</div>
+                    <div class="text-2xl font-bold text-brand-dark">60</div>
+                    <div class="text-sm text-stone-500 uppercase tracking-wide">Эксклюзивных юнитов</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 text-center">
+                    <div class="text-3xl mb-2">💎</div>
+                    <div class="text-2xl font-bold text-brand-dark">4 млн ₸</div>
+                    <div class="text-sm text-stone-500 uppercase tracking-wide">Цена за м²</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 text-center">
+                    <div class="text-3xl mb-2">💰</div>
+                    <div class="text-2xl font-bold text-brand-dark">800 млн ₸</div>
+                    <div class="text-sm text-stone-500 uppercase tracking-wide">Стоимость юнита (от)</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 text-center">
+                    <div class="text-3xl mb-2">🎯</div>
+                    <div class="text-2xl font-bold text-brand-accent">20 млн ₸</div>
+                    <div class="text-sm text-stone-500 uppercase tracking-wide">Рекламный бюджет</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Strategy Dashboard -->
+        <section class="mb-16 bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden fade-in" style="animation-delay: 0.2s;">
+            
+            <div class="bg-stone-50 p-6 border-b border-stone-200">
+                <h2 class="text-2xl font-serif text-brand-dark mb-2">Медиаплан и Распределение бюджета</h2>
+                <p class="text-stone-600">Выберите сценарий запуска для интерактивного анализа распределения инвестиций и прогноза эффективности.</p>
+                
+                <!-- Scenario Toggle -->
+                <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+                    <button id="btn-scenario-1" class="px-6 py-3 rounded-lg border-2 border-brand-accent bg-brand-accent text-white font-semibold transition-all hover:bg-amber-800" onclick="setScenario(1)">
+                        Сценарий 1: Базовый (Только соцсети)
+                    </button>
+                    <button id="btn-scenario-2" class="px-6 py-3 rounded-lg border-2 border-stone-300 bg-white text-stone-600 font-semibold transition-all hover:border-brand-accent hover:text-brand-accent" onclick="setScenario(2)">
+                        Сценарий 2: Расширенный (+ WhatsApp & Digital)
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- Left Column: Chart -->
+                <div class="flex flex-col justify-center">
+                    <h3 id="chart-title" class="text-xl font-bold text-center mb-4 text-brand-dark">Сплит бюджета (Сценарий 1)</h3>
+                    <!-- Mandatory Chart Container -->
+                    <div class="chart-container">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Right Column: Stats & Logic -->
+                <div class="flex flex-col justify-center space-y-8">
+                    
+                    <div>
+                        <h3 class="text-sm uppercase tracking-widest text-stone-500 mb-2">Прогноз эффективности за 1-й месяц</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-stone-50 p-4 rounded-lg border border-stone-100">
+                                <div class="text-stone-500 text-sm mb-1">Ожидаемый объем лидов</div>
+                                <div id="stat-leads" class="text-3xl font-bold text-brand-dark">~1 330</div>
+                            </div>
+                            <div class="bg-stone-50 p-4 rounded-lg border border-stone-100">
+                                <div class="text-stone-500 text-sm mb-1">Прогнозный CPL</div>
+                                <div id="stat-cpl" class="text-3xl font-bold text-brand-accent">15 000 ₸</div>
+                            </div>
+                        </div>
+                        <p id="stat-desc" class="text-sm text-stone-600 mt-3 italic">
+                            *CPL скорректирован относительно исторических данных по классу Super Premium (12 132 ₸) с учетом чека от 800 млн ₸.
+                        </p>
+                    </div>
+
+                    <!-- Dynamic Scenario Text -->
+                    <div id="text-scenario-1" class="space-y-4">
+                        <h4 class="font-bold text-lg border-b border-stone-200 pb-2">Каналы коммуникации (Базовые)</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3">📱</span>
+                                <div>
+                                    <strong class="text-brand-dark">Meta (Instagram/FB) - 12 млн ₸ (60%)</strong>
+                                    <p class="text-sm text-stone-600">Основной канал лидогенерации. Использование Advantage+ и LAL по базе покупателей Premium (2024-25). Акцент на формат Reels и Lead Ads.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3">🎥</span>
+                                <div>
+                                    <strong class="text-brand-dark">YouTube (Google Ads) - 5 млн ₸ (25%)</strong>
+                                    <p class="text-sm text-stone-600">Прогрев аудитории форматами In-Stream. Визуальная демонстрация "Quiet Luxury", фокус на 9-балльную сейсмостойкость и архитектуру.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3">🎵</span>
+                                <div>
+                                    <strong class="text-brand-dark">TikTok - 3 млн ₸ (15%)</strong>
+                                    <p class="text-sm text-stone-600">Таргетинг на высокодоходные сегменты (устройства iOS, премиум-путешествия). Лайфстайл-контент, передающий аутентичную атмосферу.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="text-scenario-2" class="space-y-4 hidden">
+                        <h4 class="font-bold text-lg border-b border-stone-200 pb-2">Расширенная воронка (Омниканальность)</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3">💬</span>
+                                <div>
+                                    <strong class="text-brand-dark text-brand-accent">WhatsApp VIP Рассылка - 1 млн ₸ (5%)</strong>
+                                    <p class="text-sm text-stone-600">Персонализированная рассылка по закрытой базе лояльных клиентов BAZIS-A (Premium недвижимость 24-25 гг., ~1000 чел.). <br><b>Ресурсы:</b> WhatsApp Business API (Edna/Twilio), разработка эксклюзивного video-invitation, выделенный VIP-менеджер. <br><b>Ожидания:</b> Высочайший CR в сделку, так как аудитория уже доверяет бренду.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3">🔍</span>
+                                <div>
+                                    <strong class="text-brand-dark">Google Search (Контекст) - 3 млн ₸ (15%)</strong>
+                                    <p class="text-sm text-stone-600">Перехват горячего брендового спроса и запросов по конкурентам в Ultra-Premium сегменте (Аль-Фараби, предгорья).</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3">📱</span>
+                                <div>
+                                    <strong class="text-brand-dark">Meta, YT, TikTok - 16 млн ₸ (80%)</strong>
+                                    <p class="text-sm text-stone-600">Снижение доли охватных соцсетей в пользу конверсионных (WhatsApp, Search) для оптимизации итогового CAC.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical & Logical Foundation -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 fade-in" style="animation-delay: 0.4s;">
+            <div class="mb-8 border-b border-stone-200 pb-4">
+                <h2 class="text-2xl font-serif text-brand-dark">Фундамент Стратегии: Работа с Аудиториями</h2>
+                <p class="text-stone-600 mt-2">Базируется на успешном опыте запуска ЖК холдинга BAZIS-A в 1-м квартале 2026 года.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-3">
+                    <div class="text-3xl">🌱</div>
+                    <h4 class="font-bold text-lg">LAL как «Зерно»</h4>
+                    <p class="text-sm text-stone-600 text-justify">
+                        Использование обезличенных баз (хешированные номера телефонов) реальных покупателей элитной недвижимости за 2024–2025 годы. Создание Look-a-like аудиторий (1%, 1-3%) позволяет находить пользователей с идентичным паттерном потребления.
+                    </p>
+                </div>
+                <div class="space-y-3">
+                    <div class="text-3xl">⚙️</div>
+                    <h4 class="font-bold text-lg">Advantage+ в Meta</h4>
+                    <p class="text-sm text-stone-600 text-justify">
+                        LAL-сегменты выступают в качестве «подсказки» (Audience Suggestion) для алгоритма машинного обучения. Это радикально сокращает период "холостого обучения" рекламных систем с 14 до 3–4 дней, сразу обеспечивая целевой трафик.
+                    </p>
+                </div>
+                <div class="space-y-3">
+                    <div class="text-3xl">⚡</div>
+                    <h4 class="font-bold text-lg">Унификация воронки</h4>
+                    <p class="text-sm text-stone-600 text-justify">
+                        Для максимизации конверсии используются встроенные лид-формы внутри платформ (Meta, TikTok). Это минимизирует трение при переходе, удерживая пользователя в комфортной среде, что критично для Алматинского рынка с его высоким CPM.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Data Configuration for Scenarios
+        const scenarioData = {
+            1: {
+                title: "Сценарий 1: Базовый (Meta, TikTok, YT)",
+                labels: ['Meta (IG/FB)', 'YouTube', 'TikTok'],
+                data: [12000000, 5000000, 3000000], // 60%, 25%, 15% of 20M
+                backgroundColor: ['#1c1917', '#b45309', '#a8a29e'],
+                leads: "~1 330",
+                cpl: "15 000 ₸",
+                desc: "*CPL скорректирован относительно исторических данных по классу Super Premium (12 132 ₸) с учетом чека от 800 млн ₸."
+            },
+            2: {
+                title: "Сценарий 2: Расширенный (WhatsApp + Search)",
+                labels: ['Meta (IG/FB)', 'YouTube', 'Google Search', 'TikTok', 'WhatsApp API'],
+                data: [10000000, 4000000, 3000000, 2000000, 1000000], 
+                backgroundColor: ['#1c1917', '#b45309', '#4b5563', '#a8a29e', '#16a34a'],
+                leads: "~1 520",
+                cpl: "13 150 ₸",
+                desc: "*Снижение итогового CPL за счет добавления высококонверсионных каналов (горячий поиск и рассылка по теплой базе лояльных VIP-клиентов)."
+            }
+        };
+
+        let currentChart = null;
+
+        // Initialize Chart
+        function initChart(scenarioId) {
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            const data = scenarioData[scenarioId];
+
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
+            currentChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.data,
+                        backgroundColor: data.backgroundColor,
+                        borderWidth: 2,
+                        borderColor: '#fdfbf7'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: { family: 'Helvetica Neue', size: 13 },
+                                color: '#444'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1c1917',
+                            padding: 12,
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 14 },
+                            callbacks: {
+                                label: function(context) {
+                                    let value = context.raw;
+                                    let formattedValue = new Intl.NumberFormat('ru-RU').format(value) + ' ₸';
+                                    let percentage = Math.round((value / 20000000) * 100) + '%';
+                                    return ` ${context.label}: ${formattedValue} (${percentage})`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        }
+
+        // Logic for Switching Scenarios
+        window.setScenario = function(scenarioId) {
+            // Update Buttons
+            const btn1 = document.getElementById('btn-scenario-1');
+            const btn2 = document.getElementById('btn-scenario-2');
+            
+            if (scenarioId === 1) {
+                btn1.className = "px-6 py-3 rounded-lg border-2 border-brand-accent bg-brand-accent text-white font-semibold transition-all hover:bg-amber-800";
+                btn2.className = "px-6 py-3 rounded-lg border-2 border-stone-300 bg-white text-stone-600 font-semibold transition-all hover:border-brand-accent hover:text-brand-accent";
+                
+                document.getElementById('text-scenario-1').classList.remove('hidden');
+                document.getElementById('text-scenario-2').classList.add('hidden');
+            } else {
+                btn2.className = "px-6 py-3 rounded-lg border-2 border-brand-accent bg-brand-accent text-white font-semibold transition-all hover:bg-amber-800";
+                btn1.className = "px-6 py-3 rounded-lg border-2 border-stone-300 bg-white text-stone-600 font-semibold transition-all hover:border-brand-accent hover:text-brand-accent";
+                
+                document.getElementById('text-scenario-2').classList.remove('hidden');
+                document.getElementById('text-scenario-1').classList.add('hidden');
+            }
+
+            // Update Text Data
+            document.getElementById('chart-title').innerText = scenarioData[scenarioId].title;
+            document.getElementById('stat-leads').innerText = scenarioData[scenarioId].leads;
+            document.getElementById('stat-cpl').innerText = scenarioData[scenarioId].cpl;
+            document.getElementById('stat-desc').innerText = scenarioData[scenarioId].desc;
+
+            // Re-render Chart
+            initChart(scenarioId);
+        }
+
+        // Init on load
+        window.onload = () => {
+            setScenario(1);
+        };
+    </script>
+</body>
+</html>
